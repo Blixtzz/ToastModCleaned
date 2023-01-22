@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -99,6 +101,10 @@
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\VRChat\MelonLoader\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon-DotNet, Version=4.1.6.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\VRChat\MelonLoader\Managed\Photon-DotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -386,10 +392,16 @@
     <Compile Include="Exploits\EventExploits.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QOL\AntiEvents.cs" />
     <Compile Include="QOL\ApiControls.cs" />
+    <Compile Include="QOL\AssetBundlePatch.cs" />
     <Compile Include="QOL\Movement.cs" />
     <Compile Include="Wrappers\General.cs" />
     <Compile Include="Wrappers\JoinLeave.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetPath)" "D:\Program Files (x86)\Steam\steamapps\common\VRChat\Mods" /Y /I
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

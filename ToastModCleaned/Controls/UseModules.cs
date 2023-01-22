@@ -16,9 +16,11 @@ namespace ToastModCleaned.Controls
         public static UseModules instance;
         public List<BaseModule> modules = new List<BaseModule>();
         Movement movement;
+        Wrappers.LeaveJoin joinLeave;
         public UseModules()
         {
             this.modules.Add(this.movement = new Movement());
+            this.modules.Add(this.joinLeave = new Wrappers.LeaveJoin());
         }
         public void Init()
         {
