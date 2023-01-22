@@ -5,17 +5,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToastModCleaned.Exploits;
+using ToastModCleaned.QOL;
+using VRC.UI;
 
 namespace ToastModCleaned.Controls
 {
-    public class UseModules
+    public class UseModules : BaseModule
     {
-        private static List<ToastClientCleaned.Controls.BaseModule> modules = new List<ToastClientCleaned.Controls.BaseModule>();
-        public static void OnUpdate()
+        public static UseModules instance;
+        public List<BaseModule> modules = new List<BaseModule>();
+        Movement movement;
+        public UseModules()
         {
-            foreach (var module in modules)
+            this.modules.Add(this.movement = new Movement());
+        }
+        public void Init()
+        {
+            for (int i = 0; i < this.modules.Count; i++)
             {
-                module.OnUpdate();
+                this.modules[i].Init();
+            }
+        }
+        public void OnUpdate()
+        {
+            for (int i = 0; i < this.modules.Count; i++)
+            {
+                this.modules[i].OnUpdate();
             }
         }
     }

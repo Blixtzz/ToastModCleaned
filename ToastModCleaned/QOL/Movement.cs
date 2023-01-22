@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToastClientCleaned.Controls;
+using ToastModCleaned.Controls;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
@@ -15,7 +15,7 @@ namespace ToastModCleaned.QOL
     {
         private static bool clickTP = true;
         private static bool Bhop = true;
-        private static bool inf = true;
+        private static bool inf = false;
         private static void ClickTP()
         {
             if (clickTP)

@@ -1,4 +1,5 @@
-﻿using MelonLoader;
+﻿using Il2CppSystem.Threading.Tasks;
+using MelonLoader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace ToastModCleaned
         private void StartProcesses()
         {
             MelonLogger.Msg(ConsoleColor.Cyan, "[\nI plan to make this public \nEveryone loves bruce\nIf your game closes for some reason, read readme\nThis is just the stuff I like, if you want something added, contact me ig\nDiscord -> olive#3042\n]");
+            UseModules.instance = new UseModules();
+            UseModules.instance.Init();
         }
         public override void OnApplicationStart()
         {
@@ -20,7 +23,7 @@ namespace ToastModCleaned
         }
         public override void OnUpdate()
         {
-            UseModules.OnUpdate();
+            UseModules.instance.OnUpdate();
         }
     }
 }

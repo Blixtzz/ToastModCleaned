@@ -389,6 +389,7 @@
     <Compile Include="QOL\ApiControls.cs" />
     <Compile Include="QOL\Movement.cs" />
     <Compile Include="Wrappers\General.cs" />
+    <Compile Include="Wrappers\JoinLeave.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

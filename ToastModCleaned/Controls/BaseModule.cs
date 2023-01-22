@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ToastClientCleaned.Controls
+namespace ToastModCleaned.Controls
 {
     public abstract class BaseModule
     {
