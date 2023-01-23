@@ -31,7 +31,7 @@ namespace ToastModCleaned.QOL
                     MelonUtils.NativeHookAttach((IntPtr)(&originalMethodPointer), typeof(AssetBundlePatch).GetMethod(nameof(AssetBundlePatch.OnAssetBundleLoaded), BindingFlags.Static | BindingFlags.NonPublic).MethodHandle.GetFunctionPointer());
 
                     dgAttemptAvatarDownload = Marshal.GetDelegateForFunctionPointer<AttemptAvatarDownloadDelegate>(originalMethodPointer);
-                    MelonLogger.Msg($"Hooked AssetBundleDownloadManager.");
+                    MelonLogger.Msg(ConsoleColor.Cyan, $"[Patch] Hooked AssetBundleDownloadManager.");
                 }
             }
             catch (Exception ex)

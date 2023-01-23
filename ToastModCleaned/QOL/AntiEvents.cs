@@ -13,24 +13,24 @@ namespace ToastModCleaned.QOL
 {
     internal class AntiEvents
     {
-        public static void InitEventPatch(Harmony.HarmonyInstance harmony)
+        public static void InitEventPatch(HarmonyInstance harmony)
         {
             try
             {
                 harmony.Patch(typeof(LoadBalancingClient).GetMethod("OnEvent"), new HarmonyMethod(AccessTools.Method(typeof(AntiEvents), nameof(OnEvent))));
+                MelonLogger.Msg(ConsoleColor.Cyan, "[Patch] On Event Success");
             }
-            catch
+            catch (Exception ex)
             {
-                MelonLogger.Msg(ConsoleColor.Red, "[Patch] Analytics Error while Patching Events");
+                MelonLogger.Msg(ConsoleColor.Red, $"{ex} \n-> [Patch] Analytics Error while Patching Events");
             }
         }
-        public static bool OnEvent(ref EventData data)
+        public static bool OnEvent(ref EventData __0)
         {
-            if (data == null) return false;
-            switch(data.Code)
+            switch(__0.Code)
             {
                 case 1:
-                    var bytes = data.CustomData.Cast<Il2CppArrayBase<byte>>();
+                    var bytes = __0.CustomData.Cast<Il2CppArrayBase<byte>>();
                     if (bytes.Length == 71 || bytes.Length == 37 || bytes.Length == 398)
                     {
                         return false;
