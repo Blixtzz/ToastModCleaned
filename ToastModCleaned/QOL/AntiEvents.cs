@@ -36,6 +36,10 @@ namespace ToastModCleaned.QOL
                         return false;
                     }
                     break;
+                case 6: 
+                    bytes = __0.customData.Cast<Il2CppArrayBase<byte>>();
+
+                    break;
             }
             return true;
         }

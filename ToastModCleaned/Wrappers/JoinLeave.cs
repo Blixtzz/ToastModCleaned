@@ -3,6 +3,7 @@ using MelonLoader;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,14 +19,18 @@ namespace ToastModCleaned.Wrappers
     {
         public override void OnPlayerJoin(Player player)
         {
-            Exploits.Esp.HighlightPlayer(player, true);
             if (player.prop_APIUser_0.isFriend)
             {
                 MelonLogger.Msg(System.ConsoleColor.Magenta, "Friend Joined -> " + player.prop_APIUser_0.displayName);
+                ToastMain.UserInput.Players.ForeColor = System.Drawing.Color.Red;
             }
+            Exploits.Esp.HighlightPlayer(player);
+            ToastMain.UserInput.Players.ForeColor = System.Drawing.Color.Cyan;
+            ToastMain.UserInput.Players.Items.Add(player.prop_APIUser_0.displayName);
         }
         public override void OnPlayerLeft(Player player)
         {
+            ToastMain.UserInput.Players.Items.Remove(player.prop_APIUser_0.displayName);
             if (player.prop_APIUser_0.isFriend)
             {
                 MelonLogger.Msg(System.ConsoleColor.Red, "Friend Left -> " + player.prop_APIUser_0.displayName);

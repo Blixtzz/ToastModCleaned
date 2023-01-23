@@ -13,9 +13,9 @@ namespace ToastModCleaned.QOL
 {
     public class Movement : BaseModule
     {
-        private static bool clickTP = true;
-        private static bool Bhop = true;
-        private static bool inf = false;
+        public static bool clickTP = true;
+        public static bool Bhop = true;
+        public static bool inf = false;
         private static void ClickTP()
         {
             if (clickTP)

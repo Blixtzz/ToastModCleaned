@@ -17,8 +17,10 @@ namespace ToastModCleaned.Controls
         public List<BaseModule> modules = new List<BaseModule>();
         Movement movement;
         Wrappers.LeaveJoin joinLeave;
+        Exploits.Flight flight;
         public UseModules()
         {
+            this.modules.Add(this.flight = new Exploits.Flight());
             this.modules.Add(this.movement = new Movement());
             this.modules.Add(this.joinLeave = new Wrappers.LeaveJoin());
         }
