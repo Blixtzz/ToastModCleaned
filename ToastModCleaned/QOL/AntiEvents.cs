@@ -13,6 +13,7 @@ namespace ToastModCleaned.QOL
 {
     internal class AntiEvents
     {
+        public static bool Panic = false;
         public static void InitEventPatch(HarmonyInstance harmony)
         {
             try
@@ -25,7 +26,7 @@ namespace ToastModCleaned.QOL
                 MelonLogger.Msg(ConsoleColor.Red, $"{ex} \n-> [Patch] Analytics Error while Patching Events");
             }
         }
-        public static bool OnEvent(ref EventData __0)
+        private static bool OnEvent(ref EventData __0)
         {
             switch(__0.Code)
             {
@@ -35,7 +36,19 @@ namespace ToastModCleaned.QOL
                     {
                         return false;
                     }
-                    break;
+                    return true;
+                case 6: 
+                    if (Panic)
+                    {
+                        return false;
+                    }
+                    return true;
+                case 9: 
+                    if (Panic)
+                    {
+                        return false;
+                    }
+                    return true;
             }
             return true;
         }

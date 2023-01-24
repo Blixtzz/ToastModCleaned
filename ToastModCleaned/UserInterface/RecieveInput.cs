@@ -1,4 +1,5 @@
-﻿using MelonLoader;
+﻿using BestHTTP.SecureProtocol.Org.BouncyCastle.Crypto.Engines;
+using MelonLoader;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,20 @@ namespace ToastModCleaned.UserInterface
         {
             string text = ToastMain.UserInput.UserInput.Text;
             ExpressionEvaluator.ReadText(text);
+        }
+
+        private void Players_Click(object sender, EventArgs e)
+        {
+            Wrappers.General.TargetPlayer = Wrappers.General.GetPlayer(ToastMain.UserInput.Players.SelectedItem.ToString());
+        }
+        private void Players_DoubleClick(object sender, EventArgs e)
+        {
+            var target = Wrappers.General.TargetPlayer;
+            Clipboard.SetText($"{target.prop_APIUser_0.displayName}\n{target.prop_APIUser_0.id}\n{target.prop_ApiAvatar_0.id}\navatar is {target.prop_ApiAvatar_0.releaseStatus}");
+        }
+        private void Players_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

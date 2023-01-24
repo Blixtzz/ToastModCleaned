@@ -28,7 +28,7 @@ namespace ToastModCleaned.QOL
                 }
             }
         }
-        private static void UseLegacyLocomotion()
+        public static void UseLegacyLocomotion()
         {
             VRC.Player.prop_Player_0.field_Private_VRCPlayerApi_0.UseLegacyLocomotion();
         }

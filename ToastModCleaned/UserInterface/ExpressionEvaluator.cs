@@ -32,13 +32,19 @@ namespace ToastModCleaned.UserInterface
                     QOL.ApiControls.ChangeAvi(id);
                     break;
                 case "HideSelf":
-                    QOL.ApiControls.HideSelf = !QOL.ApiControls.HideSelf;
+                    QOL.ApiControls.HideMe();
                     break;
                 case "PauseAB":
                     QOL.ApiControls.PauseAssetBundleManager();
                     break;
                 case "Clear":
                     QOL.ApiControls.ClearAssets();
+                    break;
+                case "Panic":
+                    AntiEvents.Panic = !AntiEvents.Panic;
+                    break;
+                case "ULC":
+                    Movement.UseLegacyLocomotion();
                     break;
                 default: break;
             }

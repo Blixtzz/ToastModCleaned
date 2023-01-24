@@ -78,6 +78,9 @@
             this.Players.Name = "Players";
             this.Players.Size = new System.Drawing.Size(383, 251);
             this.Players.TabIndex = 3;
+            this.Players.Click += new System.EventHandler(this.Players_Click);
+            this.Players.SelectedIndexChanged += new System.EventHandler(this.Players_SelectedIndexChanged);
+            this.Players.DoubleClick += new System.EventHandler(this.Players_DoubleClick);
             // 
             // RecieveInput
             // 

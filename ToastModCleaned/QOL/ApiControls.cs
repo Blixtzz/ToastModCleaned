@@ -11,7 +11,7 @@ namespace ToastModCleaned.QOL
 {
     public class ApiControls
     {
-        public static bool HideSelf;
+        private static bool HideSelf;
         public static void ChangeAvi(string avatarId)
         {
             //taken from remod CE, doesn't care abt credit, but yea
@@ -30,9 +30,10 @@ namespace ToastModCleaned.QOL
             };
             API.SendRequest($"avatars/{avatarId}", 0, apiModelContainer, null, true, true, 3600f, 2);
         }
-        private static void HideMe()
+        public static void HideMe()
         {
             //also remod I think but not sure
+            HideSelf = !HideSelf;
             var HidePreview = GameObject.FindObjectsOfType<VRCUiManager>().First(x => x.name.StartsWith("UserInterface"));
             if (HideSelf)
             {
