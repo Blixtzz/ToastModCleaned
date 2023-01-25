@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using UnityEngine;
 using VRC.Core;
 using VRC.UI;
+using ToastModCleaned.Controls;
 
 namespace ToastModCleaned.QOL
 {
-    public class ApiControls
+    public class ApiControls : BaseModule
     {
         private static bool HideSelf;
+        private static int targetFramerate;
         public static void ChangeAvi(string avatarId)
         {
             //taken from remod CE, doesn't care abt credit, but yea
@@ -55,6 +57,21 @@ namespace ToastModCleaned.QOL
         public static void PauseAssetBundleManager()
         {
             AssetBundleDownloadManager.field_Private_Static_AssetBundleDownloadManager_0.enabled = !AssetBundleDownloadManager.field_Private_Static_AssetBundleDownloadManager_0.enabled;
+        }
+        public override void Init()
+        {
+            targetFramerate = Application.targetFrameRate;
+        }
+        public override void OnUpdate()
+        {
+            if (Application.isFocused)
+            {
+                Application.targetFrameRate = targetFramerate;
+            }
+            if (!Application.isFocused)
+            {
+                Application.targetFrameRate = 25;
+            }
         }
     }
 }

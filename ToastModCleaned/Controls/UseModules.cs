@@ -18,11 +18,13 @@ namespace ToastModCleaned.Controls
         Movement movement;
         Wrappers.LeaveJoin joinLeave;
         Exploits.Flight flight;
+        ApiControls api;
         public UseModules()
         {
             this.modules.Add(this.flight = new Exploits.Flight());
             this.modules.Add(this.movement = new Movement());
             this.modules.Add(this.joinLeave = new Wrappers.LeaveJoin());
+            this.modules.Add(this.api = new ApiControls());
         }
         public void Init()
         {
