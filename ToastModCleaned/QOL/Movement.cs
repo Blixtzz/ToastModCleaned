@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BestHTTP.SecureProtocol.Org.BouncyCastle.Asn1.X509;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace ToastModCleaned.QOL
         public static bool clickTP = true;
         public static bool Bhop = true;
         public static bool inf = false;
+        private static bool SitOnHead = false;
+        private static Vector3 HeadPos;
         private static void ClickTP()
         {
             if (clickTP)
@@ -57,6 +60,14 @@ namespace ToastModCleaned.QOL
                 Jump();
             }
         }
+        public static void sitOnHead()
+        {
+            var target = Wrappers.General.TargetPlayer;
+            if (!target)
+                return;
+            HeadPos = target.field_Private_VRCPlayerApi_0.GetBonePosition(HumanBodyBones.Head) + new Vector3(0, .15f, 0);
+            SitOnHead = !SitOnHead;
+        }
         public override void OnUpdate()
         {
             if (Input.GetKeyDown(KeyCode.Mouse2))
@@ -66,6 +77,10 @@ namespace ToastModCleaned.QOL
             if (VRCInputManager.Method_Public_Static_VRCInput_String_0("Jump").field_Private_Boolean_0)
             {
                 bHop();
+            }
+            if (SitOnHead)
+            {
+                VRC.Player.prop_Player_0.transform.position = HeadPos;
             }
         }
     }

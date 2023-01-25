@@ -25,8 +25,8 @@ namespace ToastModCleaned.Wrappers
                 ToastMain.UserInput.Players.ForeColor = System.Drawing.Color.Red;
             }
             Exploits.Esp.HighlightPlayer(player);
-            ToastMain.UserInput.Players.ForeColor = System.Drawing.Color.Cyan;
             ToastMain.UserInput.Players.Items.Add(player.prop_APIUser_0.displayName);
+            ToastMain.UserInput.Players.ForeColor = System.Drawing.Color.Cyan;
         }
         public override void OnPlayerLeft(Player player)
         {

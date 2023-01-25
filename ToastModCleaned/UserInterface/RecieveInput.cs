@@ -43,5 +43,10 @@ namespace ToastModCleaned.UserInterface
         {
 
         }
+
+        private void SitOnHead_Click(object sender, EventArgs e)
+        {
+            QOL.Movement.sitOnHead();
+        }
     }
 }

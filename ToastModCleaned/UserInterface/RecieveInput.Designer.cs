@@ -32,6 +32,7 @@
             this.Send = new System.Windows.Forms.Button();
             this.UserInput = new System.Windows.Forms.TextBox();
             this.Players = new System.Windows.Forms.ListBox();
+            this.SitOnHead = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Recieve
@@ -82,12 +83,25 @@
             this.Players.SelectedIndexChanged += new System.EventHandler(this.Players_SelectedIndexChanged);
             this.Players.DoubleClick += new System.EventHandler(this.Players_DoubleClick);
             // 
+            // SitOnHead
+            // 
+            this.SitOnHead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SitOnHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SitOnHead.Location = new System.Drawing.Point(12, 345);
+            this.SitOnHead.Name = "SitOnHead";
+            this.SitOnHead.Size = new System.Drawing.Size(80, 31);
+            this.SitOnHead.TabIndex = 4;
+            this.SitOnHead.Text = "HeadSit";
+            this.SitOnHead.UseVisualStyleBackColor = true;
+            this.SitOnHead.Click += new System.EventHandler(this.SitOnHead_Click);
+            // 
             // RecieveInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(407, 388);
+            this.Controls.Add(this.SitOnHead);
             this.Controls.Add(this.Players);
             this.Controls.Add(this.UserInput);
             this.Controls.Add(this.Send);
@@ -107,5 +121,6 @@
         private System.Windows.Forms.Button Send;
         public System.Windows.Forms.TextBox UserInput;
         public System.Windows.Forms.ListBox Players;
+        private System.Windows.Forms.Button SitOnHead;
     }
 }
