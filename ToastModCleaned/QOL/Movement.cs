@@ -17,8 +17,7 @@ namespace ToastModCleaned.QOL
         public static bool clickTP = true;
         public static bool Bhop = true;
         public static bool inf = false;
-        private static bool SitOnHead = false;
-        private static Vector3 HeadPos;
+        public static bool SitOnHead = false;
         private static void ClickTP()
         {
             if (clickTP)
@@ -60,14 +59,6 @@ namespace ToastModCleaned.QOL
                 Jump();
             }
         }
-        public static void sitOnHead()
-        {
-            var target = Wrappers.General.TargetPlayer;
-            if (!target)
-                return;
-            HeadPos = target.field_Private_VRCPlayerApi_0.GetBonePosition(HumanBodyBones.Head) + new Vector3(0, .15f, 0);
-            SitOnHead = !SitOnHead;
-        }
         public override void OnUpdate()
         {
             if (Input.GetKeyDown(KeyCode.Mouse2))
@@ -80,7 +71,10 @@ namespace ToastModCleaned.QOL
             }
             if (SitOnHead)
             {
-                VRC.Player.prop_Player_0.transform.position = HeadPos;
+                var target = Wrappers.General.TargetPlayer;
+                if (!target)
+                    return;
+                VRC.Player.prop_Player_0.transform.position = target.field_Private_VRCPlayerApi_0.GetBonePosition(HumanBodyBones.Head) + new Vector3(0, .15f, 0); ;
             }
         }
     }

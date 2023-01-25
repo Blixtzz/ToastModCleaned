@@ -8,16 +8,34 @@ using ExitGames.Client.Photon;
 using System.Text;
 using System.Threading.Tasks;
 using UnhollowerBaseLib;
+using System.Timers;
 
 namespace ToastModCleaned.QOL
 {
     internal class AntiEvents
     {
+        private static System.Timers.Timer aTimer;
         public static bool Panic = false;
+        private static int e6;
+        private static int e9;
+
+        private static void SetTimer()
+        {
+            aTimer = new System.Timers.Timer(2000);
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            e6 = 0;
+            e9 = 0;
+        }
         public static void InitEventPatch(HarmonyInstance harmony)
         {
             try
             {
+                SetTimer();
                 harmony.Patch(typeof(LoadBalancingClient).GetMethod("OnEvent"), new HarmonyMethod(AccessTools.Method(typeof(AntiEvents), nameof(OnEvent))));
                 MelonLogger.Msg(ConsoleColor.Cyan, "[Patch] On Event Success");
             }
@@ -38,16 +56,18 @@ namespace ToastModCleaned.QOL
                     }
                     return true;
                 case 6: 
-                    if (Panic)
+                    if (Panic || e6 >= 50)
                     {
                         return false;
                     }
+                    e6++;
                     return true;
                 case 9: 
-                    if (Panic)
+                    if (Panic || e9 >= 50)
                     {
                         return false;
                     }
+                    e9++;
                     return true;
             }
             return true;
