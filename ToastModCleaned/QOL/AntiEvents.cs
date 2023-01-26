@@ -27,6 +27,7 @@ namespace ToastModCleaned.QOL
         }
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
+            UdonPatch.udonRateLimit = 0;
             e6 = 0;
             e9 = 0;
         }

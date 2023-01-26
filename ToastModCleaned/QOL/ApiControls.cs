@@ -7,6 +7,7 @@ using UnityEngine;
 using VRC.Core;
 using VRC.UI;
 using ToastModCleaned.Controls;
+using VRC.SDKBase;
 
 namespace ToastModCleaned.QOL
 {
@@ -57,6 +58,15 @@ namespace ToastModCleaned.QOL
         public static void PauseAssetBundleManager()
         {
             AssetBundleDownloadManager.field_Private_Static_AssetBundleDownloadManager_0.enabled = !AssetBundleDownloadManager.field_Private_Static_AssetBundleDownloadManager_0.enabled;
+        }
+        public static void ForcePickups()
+        {
+            VRC.SDKBase.VRC_Pickup[] array = UnityEngine.Object.FindObjectsOfType<VRC_Pickup>();
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i].DisallowTheft = false;
+                array[i].pickupable = true;
+            }
         }
         public override void Init()
         {

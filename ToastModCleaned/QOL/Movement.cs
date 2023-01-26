@@ -18,6 +18,7 @@ namespace ToastModCleaned.QOL
         public static bool Bhop = true;
         public static bool inf = false;
         public static bool SitOnHead = false;
+        public static bool Murder = false;
         private static void ClickTP()
         {
             if (clickTP)
@@ -34,7 +35,7 @@ namespace ToastModCleaned.QOL
         {
             VRC.Player.prop_Player_0.field_Private_VRCPlayerApi_0.UseLegacyLocomotion();
         }
-        private static void ForceJump()
+        public static void ForceJump()
         {
             if (Networking.LocalPlayer.GetJumpImpulse() <= 3)
             {
@@ -75,6 +76,10 @@ namespace ToastModCleaned.QOL
                 if (!target)
                     return;
                 VRC.Player.prop_Player_0.transform.position = target.field_Private_VRCPlayerApi_0.GetBonePosition(HumanBodyBones.Head) + new Vector3(0, .15f, 0); ;
+            }
+            if (Murder && Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                ApiControls.ForcePickups();
             }
         }
     }

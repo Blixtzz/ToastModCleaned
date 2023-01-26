@@ -11,6 +11,7 @@ namespace ToastModCleaned.QOL
     {
         public static bool LogUdon = false;
         public static bool NoUdon = false;
+        public static int udonRateLimit = 0;
         public override void Init()
         {
             new Thread(() => { UdonPatch.HarmonyInit(new Harmony.HarmonyInstance("UdonPatch")); }).Start();
@@ -29,10 +30,11 @@ namespace ToastModCleaned.QOL
         }
         private static bool UdonSyncRunProgramAsRPC(string __0, VRC.Player __1)
         {
+            if (NoUdon || udonRateLimit >= 50)
+                return false;
             if (LogUdon)
                 MelonLogger.Msg($"{__0} -> sent by: {__1.field_Private_APIUser_0.displayName}");
-            if (NoUdon)
-                return false;
+
             return true;
         }
     }

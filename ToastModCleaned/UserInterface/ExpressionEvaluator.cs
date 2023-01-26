@@ -60,6 +60,12 @@ namespace ToastModCleaned.UserInterface
                 case "NoUdon":
                     QOL.UdonPatch.NoUdon = !QOL.UdonPatch.NoUdon;
                     break;
+                case "ForceJump":
+                    QOL.Movement.ForceJump();
+                    break;
+                case "Murder":
+                    QOL.Movement.Murder = !QOL.Movement.Murder;
+                    break;
                 default: break;
             }
         }
