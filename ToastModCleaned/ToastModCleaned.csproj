@@ -399,6 +399,7 @@
     <Compile Include="QOL\ApiControls.cs" />
     <Compile Include="QOL\AssetBundlePatch.cs" />
     <Compile Include="QOL\Movement.cs" />
+    <Compile Include="QOL\UdonPatch.cs" />
     <Compile Include="UserInterface\ExpressionEvaluator.cs" />
     <Compile Include="UserInterface\RecieveInput.cs">
       <SubType>Form</SubType>

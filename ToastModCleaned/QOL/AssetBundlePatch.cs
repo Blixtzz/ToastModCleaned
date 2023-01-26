@@ -8,15 +8,21 @@ using VRC.Core;
 using System.IO;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading;
+using ToastModCleaned.Controls;
 
 namespace ToastModCleaned.QOL
 {
-    public class AssetBundlePatch
+    public class AssetBundlePatch : BaseModule
     { //taken from bundle bouncer, idk how they manage this shit lol
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private unsafe delegate IntPtr AttemptAvatarDownloadDelegate(IntPtr hiddenValueTypeReturn, IntPtr thisPtr, IntPtr apiAvatarPtr, IntPtr multicastDelegatePtr, bool idfk, IntPtr nativeMethodInfo);
         private static AttemptAvatarDownloadDelegate dgAttemptAvatarDownload;
-        public static void assetBundlePatch(Harmony.HarmonyInstance harmony)
+        public override void Init()
+        {
+            new Thread(() => { QOL.AssetBundlePatch.HarmonyPatch(new Harmony.HarmonyInstance("AssetBundlePatch")); }).Start();
+        }
+        private static void HarmonyPatch(Harmony.HarmonyInstance harmony)
         {
             try
             {
@@ -31,7 +37,7 @@ namespace ToastModCleaned.QOL
                     MelonUtils.NativeHookAttach((IntPtr)(&originalMethodPointer), typeof(AssetBundlePatch).GetMethod(nameof(AssetBundlePatch.OnAssetBundleLoaded), BindingFlags.Static | BindingFlags.NonPublic).MethodHandle.GetFunctionPointer());
 
                     dgAttemptAvatarDownload = Marshal.GetDelegateForFunctionPointer<AttemptAvatarDownloadDelegate>(originalMethodPointer);
-                    MelonLogger.Msg(ConsoleColor.Cyan, $"[Patch] Hooked AssetBundleDownloadManager.");
+                    MelonLogger.Msg(ConsoleColor.Cyan, $"[Patch] On AssetBundleDownloadManager Success");
                 }
             }
             catch (Exception ex)
