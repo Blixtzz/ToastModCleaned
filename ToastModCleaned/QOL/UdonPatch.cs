@@ -10,6 +10,7 @@ namespace ToastModCleaned.QOL
     public class UdonPatch : BaseModule
     {
         public static bool LogUdon = false;
+        public static bool NoUdon = false;
         public override void Init()
         {
             new Thread(() => { UdonPatch.HarmonyInit(new Harmony.HarmonyInstance("UdonPatch")); }).Start();
@@ -30,6 +31,8 @@ namespace ToastModCleaned.QOL
         {
             if (LogUdon)
                 MelonLogger.Msg($"{__0} -> sent by: {__1.field_Private_APIUser_0.displayName}");
+            if (NoUdon)
+                return false;
             return true;
         }
     }

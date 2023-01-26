@@ -57,6 +57,9 @@ namespace ToastModCleaned.UserInterface
                 case "LogUdon":
                     QOL.UdonPatch.LogUdon = !QOL.UdonPatch.LogUdon;
                     break;
+                case "NoUdon":
+                    QOL.UdonPatch.NoUdon = !QOL.UdonPatch.NoUdon;
+                    break;
                 default: break;
             }
         }
