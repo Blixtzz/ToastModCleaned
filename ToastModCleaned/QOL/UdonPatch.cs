@@ -32,6 +32,7 @@ namespace ToastModCleaned.QOL
         {
             if (NoUdon || udonRateLimit >= 50)
                 return false;
+            udonRateLimit++;
             if (LogUdon)
                 MelonLogger.Msg($"{__0} -> sent by: {__1.field_Private_APIUser_0.displayName}");
 
