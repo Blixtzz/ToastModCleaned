@@ -30,29 +30,6 @@ namespace ToastModCleaned.Wrappers
             }
             return null;
         }
-        public static byte[] Post(string url, NameValueCollection pairs)
-        {
-            byte[] result;
-            using (WebClient wb = new WebClient())
-            {
-                result = wb.UploadValues(url, pairs);
-            }
-            return result;
-        }
 
-        public static void webHookRequest(string username, string msg)
-        {
-            General.Post("https://discord.com/api/webhooks/994447812462915654/kZexMbyHB2iejgr43--RCbwMMAS4-lcrdYZ9ld6KiY8_mK_IKzdrb355i-kVU-rqt3ZY", new NameValueCollection
-            {
-                {
-                    "username",
-                    username
-                },
-                {
-                    "content",
-                    msg
-                }
-            });
-        }
     }
 }

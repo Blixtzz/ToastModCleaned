@@ -74,7 +74,6 @@ namespace ToastModCleaned.QOL
                     string[] lines = { "-============================================================-\nAvatar Download Started\n-============================================================-", "avatar name: " + av.name, "download: " + av.assetUrl, "id: " + av.id, "image: " + av.thumbnailImageUrl, "author: " + av.authorName, "release: " + av.releaseStatus, "\n\n" };
                     string line = $"{av.name}\n{av.id}\n{av.releaseStatus}\n{av.imageUrl}";
                     File.AppendAllLines(@"Mods\meow\log\AvLog.txt", lines);
-                    Wrappers.General.webHookRequest("ToastLog", line);
                 }
             }
             return dgAttemptAvatarDownload(hiddenStructReturn, thisPtr, pApiAvatar, pMulticastDelegate, param_3, nativeMethodInfo);
