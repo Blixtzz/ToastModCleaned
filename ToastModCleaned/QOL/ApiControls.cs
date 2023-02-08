@@ -15,24 +15,6 @@ namespace ToastModCleaned.QOL
     {
         private static bool HideSelf;
         private static int targetFramerate;
-        public static void ChangeAvi(string avatarId)
-        {
-            //taken from remod CE, doesn't care abt credit, but yea
-            var apiModelContainer = new ApiModelContainer<ApiAvatar>
-            {
-                OnSuccess = new Action<ApiContainer>(c =>
-                {
-                    var pageAvatar = Resources.FindObjectsOfTypeAll<PageAvatar>()[0];
-                    var apiAvatar = new ApiAvatar
-                    {
-                        id = avatarId
-                    };
-                    pageAvatar.field_Public_SimpleAvatarPedestal_0.field_Internal_ApiAvatar_0 = apiAvatar;
-                    pageAvatar.ChangeToSelectedAvatar();
-                })
-            };
-            API.SendRequest($"avatars/{avatarId}", 0, apiModelContainer, null, true, true, 3600f, 2);
-        }
         public static void HideMe()
         {
             //also remod I think but not sure

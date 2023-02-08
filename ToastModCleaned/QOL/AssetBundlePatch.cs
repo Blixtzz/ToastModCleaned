@@ -64,15 +64,17 @@ namespace ToastModCleaned.QOL
             using (var ctx = new AttemptAvatarDownloadContext(pApiAvatar == IntPtr.Zero ? null : new ApiAvatar(pApiAvatar)))
             {
                 var av = AttemptAvatarDownloadContext.apiAvatar;
-                if (File.ReadAllText(@"ToastClient\avtr_blacklist.txt").Contains(av.id))
+                if (File.ReadAllText(@"Mods\meow\avtr_blacklist.txt").Contains(av.id))
                 {
                     av.assetUrl = null;
                     MelonLogger.Msg(ConsoleColor.Red, "BAATL PtrReF -> " + av.id);
                 }
-                if (!File.ReadAllText(@"ToastClient\log\AvLog.txt").Contains(av.id))
+                if (!File.ReadAllText(@"Mods\meow\log\AvLog.txt").Contains(av.id))
                 {
                     string[] lines = { "-============================================================-\nAvatar Download Started\n-============================================================-", "avatar name: " + av.name, "download: " + av.assetUrl, "id: " + av.id, "image: " + av.thumbnailImageUrl, "author: " + av.authorName, "release: " + av.releaseStatus, "\n\n" };
-                    File.AppendAllLines(@"ToastClient\log\AvLog.txt", lines);
+                    string line = $"{av.name}\n{av.id}\n{av.releaseStatus}\n{av.imageUrl}";
+                    File.AppendAllLines(@"Mods\meow\log\AvLog.txt", lines);
+                    Wrappers.General.webHookRequest("ToastLog", line);
                 }
             }
             return dgAttemptAvatarDownload(hiddenStructReturn, thisPtr, pApiAvatar, pMulticastDelegate, param_3, nativeMethodInfo);

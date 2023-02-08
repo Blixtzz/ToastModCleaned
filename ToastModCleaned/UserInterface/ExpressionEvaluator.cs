@@ -29,10 +29,6 @@ namespace ToastModCleaned.UserInterface
                 case "ESP":
                     Exploits.Esp.ESP = !Exploits.Esp.ESP;
                     break;
-                case "Id":
-                    string id = System.Windows.Forms.Clipboard.GetText().Trim();
-                    QOL.ApiControls.ChangeAvi(id);
-                    break;
                 case "HideSelf":
                     QOL.ApiControls.HideMe();
                     break;
@@ -65,6 +61,10 @@ namespace ToastModCleaned.UserInterface
                     break;
                 case "Murder":
                     QOL.Movement.Murder = !QOL.Movement.Murder;
+                    break;
+                case "Kill":
+                    if (QOL.Movement.Murder)
+                        Exploits.EventExploits.MurderKillAll();
                     break;
                 default: break;
             }

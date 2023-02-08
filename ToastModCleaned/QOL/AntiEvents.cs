@@ -7,6 +7,7 @@ using System.Threading;
 using System.Timers;
 using ToastModCleaned.Controls;
 using UnhollowerBaseLib;
+using UnhollowerBaseLib.Runtime;
 
 namespace ToastModCleaned.QOL
 {
@@ -50,31 +51,30 @@ namespace ToastModCleaned.QOL
         }
         private static bool OnEvent(ref EventData __0)
         {
-            switch (__0.Code)
+            if (EventAntis)
             {
-                case 1:
-                    var bytes = __0.CustomData.Cast<Il2CppArrayBase<byte>>();
-                    if (bytes.Length == 71 || bytes.Length == 37 || bytes.Length == 398)
-                    {
-                        return false;
-                    }
-                    return true;
-                case 6:
-                    if (Panic || e6 >= 50)
-                    {
-                        return false;
-                    }
-                    if (EventAntis)
-                        e6++;
-                    return true;
-                case 9:
-                    if (Panic || e9 >= 50)
-                    {
-                        return false;
-                    }
-                    if (EventAntis)
-                        e9++;
-                    return true;
+                switch (__0.Code)
+                {
+                    case 1:
+                        //casting bytes the way I was throws errors and breaks everything now. I'll work on a different e1 anti ig
+                        break;
+                    case 6:
+                        if (Panic || e6 <= 50)
+                        {
+                            return true;
+                        }
+                        if (EventAntis)
+                            e6++;
+                        break;
+                    case 9:
+                        if (Panic || e9 <= 50)
+                        {
+                            return true;
+                        }
+                        if (EventAntis)
+                            e9++;
+                        break;
+                }
             }
             return true;
         }

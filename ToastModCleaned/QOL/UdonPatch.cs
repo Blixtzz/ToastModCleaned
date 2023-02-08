@@ -32,7 +32,10 @@ namespace ToastModCleaned.QOL
         {
             if (NoUdon || udonRateLimit >= 50)
                 return false;
-            udonRateLimit++;
+            if (Movement.Murder && __0 == "SyncKill")
+                return false;
+            if (AntiEvents.EventAntis)
+                udonRateLimit++;
             if (LogUdon)
                 MelonLogger.Msg($"{__0} -> sent by: {__1.field_Private_APIUser_0.displayName}");
 
